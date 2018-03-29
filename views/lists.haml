@@ -1,2 +1,10 @@
-%h1
-  these are the lists
+%h1 Lists
+
+
+- lists.each do |list|
+  .list_link
+    %a{ href: "edit/#{list.id}" }
+      = list.name
+
+%a{ href: '/new' }
+  new list

@@ -3,7 +3,7 @@ get '/new/?' do
 end
 
 post '/new/?' do
-  user = User.first(name: session[:user_id])
-  List.new_list params[:title], params[:items], user
-  redirect request.referer
+  user = User.first(id: session[:user_id])
+  list = List.new_list params[:name], params[:items], user
+  redirect '/'
 end

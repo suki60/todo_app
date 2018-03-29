@@ -1,5 +1,7 @@
 Sequel.migration do
+
   change do
+    
     create_table :permissions do
       foreign_key :user_id, :users, null: false
       foreign_key :list_id, :lists, null: false

@@ -33,7 +33,8 @@
 
 
 :javascript
-  $(document).on('click', '#add-item', function(){
+  $('#add-item').on('click', function(){
+    console.log("cliiick");
     var template_text = $('#item_template').html();
-    $('#items_list').before(template_text);
+    $('#items-list').before(template_text);
   });
