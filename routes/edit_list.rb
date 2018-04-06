@@ -23,7 +23,7 @@ get '/edit/:id/?' do
 end
 
 post '/edit/?' do
-
+  user = User.first(id: session[:user_id])
   items = params[:items]
 
   #convert items id to_i
@@ -31,7 +31,10 @@ post '/edit/?' do
     item[:id] = item[:id].to_i
   end
 
-  user = User.first(id: session[:user_id])
-  List.edit_list params[:id], params[:name], params[:items], user
-  redirect '/'
+  errors = List.edit_list params[:id], params[:name], items, user
+  if errors.empty?
+    redirect '/'
+  else
+    haml :error_edit, locals: {error: errors}
+  end
 end

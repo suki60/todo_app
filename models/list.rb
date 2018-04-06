@@ -6,76 +6,44 @@ class List < Sequel::Model
   one_to_many :permissions
   one_to_many :logs
 
+  def validate
+    super
+    errors.add(:name, 'list name cannot be empty') if name.empty?
+  end
+
+  #method to create new list
   def self.new_list(name, items, user)
-    list = List.create(name: name, created_at: Time.now)
+    list = List.new(name: name, created_at: Time.now)
 
-    items.each do |item|
-      Item.create(name: item[:name], description: item[:description], list: list, user: user,
-                  created_at: Time.now, updated_at: Time.now)
-    end
+    items.each{ |item| list.items << Item.new(name: item[:name], description: item[:description], user: user, created_at: Time.now, updated_at: Time.now) }
 
-    Permission.create(list: list, user: user, permission_level: 'read_write', created_at: Time.now,
+    list.permissions << Permission.new(user: user, permission_level: 'read_write', created_at: Time.now,
                       updated_at: Time.now)
     list
   end
 
+  #method to edit list
   def self.edit_list(id, name, items, user)
-    #canot filter item id being string
-
     list = List.first(id: id)
+
+    #update name and update_at
     list.name = name
     list.updated_at = Time.now
-    list.save
-
-    items.each do |item|
     binding.pry
-      if !item[:name].empty?
-        i = Item.first(id: item[:id])
-
-        if i.nil?
-          Item.create(name: item[:name], description: item[:description], list: list, user: user,
-                      created_at: Time.now, updated_at: Time.now)
-        else
-          i.name = item[:name]
-          i.description = item[:description]
-          i.updated_at = Time.now
-          i.save
-        end
-      end
-    end
-
-
-
-
-
-
-
-
-
-
-
-=begin
+    #update exisiting items or create new ones
     items.each do |item|
-      binding.pry
-
-      if item[:deleted]
-        i = Item.first(item[:id]).destroy
-        next
-      end
-
-      i = Item.first(item[:id])
+      i = Item.first(id: item[:id])
 
       if i.nil?
-        Item.create(name: item[:name], description: item[:description], list: list, user: user,
+        i = Item.new(name: item[:name], description: item[:description], list: list, user: user,
                     created_at: Time.now, updated_at: Time.now)
       else
+        #list.items.each { |old_item| pu  }
         i.name = item[:name]
         i.description = item[:description]
         i.updated_at = Time.now
-        i.save
       end
     end
-=end
   end
 end
 
@@ -83,4 +51,9 @@ class Item < Sequel::Model
   set_primary_key :id
   many_to_one :user
   many_to_one :list
+
+  def validate
+    super
+    errors.add(:name, 'item name cannot be empty') if name.empty?
+  end
 end
