@@ -10,15 +10,15 @@ class List < Sequel::Model
   end
 
   def before_save
-    self.updated_at = Time.now if self.created_at
-    self.created_at ||= Time.now
+    self.updated_at = Time.now
+    self.created_at ||= updated_at
   end
 
   #method to create new list
   def self.new_list(name, items, user)
     list = List.new(name: name)
 
-    items.each{ |item| list.items << Item.new(name: item[:name], description: item[:description], user: user, created_at: Time.now, updated_at: Time.now) }
+    items.each{ |item| list.items << Item.new(name: item[:name], description: item[:description], user: user) }
 
     list.permissions << Permission.new(user: user, permission_level: 'read_write', created_at: Time.now,
                       updated_at: Time.now)
@@ -27,15 +27,8 @@ class List < Sequel::Model
 
   #method to edit list
   def self.edit_list(id, name, items, user)
-    binding.pry
+    #binding.pry
     list = List.first(id: id)
-
-    #convert items id to_i
-=begin
-    items.each do |item|
-      item[:id] = item[:id].to_i
-    end
-=end
 
     #update name
     list.name = name
@@ -67,7 +60,7 @@ class Item < Sequel::Model
   end
 
   def before_save
-    self.updated_at = Time.now if self.created_at
-    self.created_at ||= Time.now
+    self.updated_at = Time.now
+    self.created_at ||= updated_at
   end
 end

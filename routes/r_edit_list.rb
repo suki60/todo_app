@@ -15,7 +15,6 @@ get '/edit/:id/?' do
   end
 
   if can_edit
-    #binding.pry
     haml :edit_list, locals: {list: list, items: items}
   else
     haml :error, locals: {error: 'Invalid permissions'}

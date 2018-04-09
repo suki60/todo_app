@@ -14,6 +14,7 @@ class Todo < Sinatra::Application
     env = ENV['RACK_ENV']
     register Sinatra::Reloader
     also_reload 'models/*.rb'
+    
     after_reload do
       puts 'reloaded'
     end
@@ -34,10 +35,7 @@ end
 
 
 before do
-
   if (!['login', 'signup'].include? request.path_info.split('/')[1]) && session[:user_id].nil?
     redirect '/login'
   end
-
-
 end

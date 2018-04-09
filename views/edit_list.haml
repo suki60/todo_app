@@ -33,7 +33,19 @@
           .col-md-2.col-md-offset-3
             %button.btn.btn-sm.btn-primary{ type: 'submit' }
               %i.glyphicon.glyphicon-ok
-              edit
+                edit
+
+
+      %form.form-horizontal{ name: 'list', method: 'post', action: url('/delete') }
+        .form-group
+          .col-md-1
+            %input.form-control{ type: 'text', name: 'id', value: list.id }
+        .form-group
+          .col-md-2.col-md-offset-3
+            %button.btn.btn-sm.btn-primary{ type: 'submit' }
+              %i.glyphicon.glyphicon-ok
+                delete
+
 
 %script{ type: 'text/template', id: 'item_template' }
   .form-group.item-group
