@@ -24,17 +24,19 @@ end
 
 post '/edit/?' do
   user = User.first(id: session[:user_id])
-  items = params[:items]
+  list = List.edit_list params[:id], params[:name], params[:items], user
 
-  #convert items id to_i
-  items.each do |item|
-    item[:id] = item[:id].to_i
-  end
+  #init errors array and validate list and items. We append errors if they are not valid
+  errors = []
+  errors << list.errors if !list.valid?
+  list.items.each { |item| errors << item.errors if !item.valid? }
 
-  errors = List.edit_list params[:id], params[:name], items, user
   if errors.empty?
+    list.save
+    list.items.each { |item| list.add_item(item) }
+    list.add_permission(list.permissions[0])
     redirect '/'
   else
-    haml :error_edit, locals: {error: errors}
+    haml :error_new_list, locals: {errors: errors}
   end
 end
