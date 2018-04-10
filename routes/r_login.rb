@@ -1,9 +1,9 @@
 get '/login/?' do
 
   if session[:user_id].nil?
-    haml :login
+    slim :login
   else
-    haml :error, locals: {error: 'Please log out first'}
+    slim :error, locals: {error: 'Please log out first'}
   end
 end
 
@@ -12,7 +12,7 @@ post '/login/?' do
   user = User.first(name: params[:name], password: md5sum)
   #binding.pry
   if user.nil?
-    haml :error, locals: {error: 'Invalid login credentials'}
+    slim :error, locals: {error: 'Invalid login credentials'}
   else
     session[:user_id] = user.id
     redirect '/'

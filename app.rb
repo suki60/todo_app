@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sequel'
-require 'haml'
+require 'slim'
 require 'digest'
 require 'pry'
 require 'pry-byebug'
@@ -14,7 +14,7 @@ class Todo < Sinatra::Application
     env = ENV['RACK_ENV']
     register Sinatra::Reloader
     also_reload 'models/*.rb'
-    
+
     after_reload do
       puts 'reloaded'
     end

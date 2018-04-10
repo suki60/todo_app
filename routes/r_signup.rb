@@ -1,9 +1,9 @@
 get '/signup/?' do
 
   if session[:user_id].nil?
-    haml :signup
+    slim :signup
   else
-    haml :error, locals: {error: 'Please log out first'}
+    slim :error, locals: {error: 'Please log out first'}
   end
 end
 

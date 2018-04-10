@@ -32,6 +32,6 @@ post '/permission/?' do
 
     redirect request.referer
   else
-    haml :error, locals: {error: 'Invalid permissions'}
+    slim :error, locals: {error: 'Invalid permissions'}
   end
 end

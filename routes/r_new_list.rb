@@ -1,5 +1,5 @@
 get '/new/?' do
-  haml :new_list
+  slim :new_list
 end
 
 post '/new/?' do
@@ -17,6 +17,6 @@ post '/new/?' do
     list.add_permission(list.permissions[0])
     redirect '/'
   else
-    haml :error_new_list, locals: {errors: errors}
+    slim :error_new_list, locals: {errors: errors}
   end
 end

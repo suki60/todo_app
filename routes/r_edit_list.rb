@@ -1,7 +1,5 @@
 get '/edit/:id/?' do
   list = List.first(id: params[:id])
-  #binding.pry
-  items = list.items
   can_edit = true
 
   if list.nil?
@@ -15,9 +13,9 @@ get '/edit/:id/?' do
   end
 
   if can_edit
-    haml :edit_list, locals: {list: list, items: items}
+    slim :edit_list, locals: {list: list, items: list.items}
   else
-    haml :error, locals: {error: 'Invalid permissions'}
+    slim :error, locals: {error: 'Invalid permissions'}
   end
 end
 
@@ -36,6 +34,6 @@ post '/edit/?' do
     list.add_permission(list.permissions[0])
     redirect '/'
   else
-    haml :error_new_list, locals: {errors: errors}
+    slim :error_edit_list, locals: {errors: errors, list: list, items: list.items}
   end
 end
