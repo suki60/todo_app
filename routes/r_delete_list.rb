@@ -1,4 +1,4 @@
-post '/delete/?' do
+get '/delete/:id/?' do
   list = List.first(id: params[:id])
   list.items.each(&:delete)
   list.permissions.each(&:delete)

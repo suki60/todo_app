@@ -1,0 +1,36 @@
+.bg-body {
+  background-color: #F6F0FA;
+}
+
+.bg-purple {
+  background-color: #60418F;
+}
+
+.btn-outline-purple {
+    color: #60418F;
+    background-color: #F6F0FA;
+    background-image: none;
+    border-color: #60418F;
+}
+
+.space {
+  padding-bottom: 56px;
+}
+
+.text-white {
+  color = white;
+}
+
+.text-purple {
+  color: #60418F;
+}
+
+.card-height {
+  height: 227px;
+}
+
+.spread {
+    display:inline-block;
+    width:100%;
+    height:100%;
+}

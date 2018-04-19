@@ -1,8 +1,37 @@
-h1 List
+.row
+  - lists.each_with_index do |list,i|
+    .col-4
+      .card.text-center
+        h5.card-header.text-purple
+          = list.name
+        ul.list-group.list-group-flush
+          - 3.times do |i|
+            - if i == 2 && list.items[2]
+              li.li.list-group-item ...
+            - elsif list.items[i]
+              li.list-group-item = list.items[i].name
+            - else
+              li.list-group-item.text-white text white
+        .card-body
+          a.card-link href="edit/#{list.id}"
+            button.btn.btn-outline-purple edit
+          a.card-link href="delete/#{list.id}"
+            button.btn.btn-outline-purple delete
+    - if (i + 1) % 3 == 0
+      .space.col-12
 
-- lists.each do |list|
-  .list_link
-    a href="edit/#{list.id}"
-      = list.name
+  .col-4
+    .card.text-center
+      h5.card-header.text-purple New list
+      .card-body.card-height.text-purple
+        a.spread href='/new' +
 
-a href='/new' new list
+
+
+
+
+
+
+
+
+/ a href='/new' new list
