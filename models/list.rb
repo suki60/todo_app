@@ -16,6 +16,7 @@ class List < Sequel::Model
 
   #method to create new list
   def self.new_list(name, items, user)
+    items = [] if items.nil?
     list = List.new(name: name)
 
     items.each{ |item| list.items << Item.new(name: item[:name], description: item[:description], user: user) }

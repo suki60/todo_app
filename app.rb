@@ -26,7 +26,7 @@ class Todo < Sinatra::Application
     Dir['models/*.rb'].each { |model| require_relative model }
 
     #load all routes
-    Dir[File.join(File.dirname(__FILE__), 'routes/*.rb')].each { |route| load route }
+    Dir[File.join(File.dirname(__FILE__), 'routes/*/*.rb')].each { |route| load route }
 
     enable :sessions
     enable :reloader

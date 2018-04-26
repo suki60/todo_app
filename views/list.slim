@@ -1,0 +1,81 @@
+.row.justify-content-center
+  .col.col-md-10.col-lg-8
+    .row
+      .col-1
+        a.close href='/'
+          span &lArr;
+      .col-10.text-center.text-capitalize
+        h3 = list.name
+      .col-1
+        a.close href='/delete/#{list.id}'
+          span &times;
+    - list.items.each_with_index do |item, i|
+      .row.item class=(id == item.id ? 'hide' : 'NOT')
+        .col-4
+          = item.name
+        .col-6
+          small = item.description
+        .col-1
+          button.close.edit id='item_#{i}' type='button'
+            span &hellip;
+        .col-1
+          a.close href='/delete/#{list.id}/#{item.id}'
+            span &times;
+
+      form.form class='item_#{i}'  name='list' action='/list/#{list.id}/#{item.id}' method='post' class=(id == item.id ? 'show' : 'NOT')
+        .form-row
+          .form-group.col-4
+            input.form-control type='text' name='name' value=(id == item.id ? '' : item.name) class=(id == item.id ? 'border-purple' : 'NOT')
+            - if id == item.id
+              p.error_message
+               small.text-purple = errors[:name][0]
+          .form-group.col-8
+            input.form-control type='text' name='description' value=item.description
+        .form-row
+          .form-group.col-2
+            button.btn.btn-purple.btn-block type='submit' Edit
+          .form-group.col-2
+            button.cancel.btn.btn-outline-purple.btn-block type='button' Cancel
+      hr
+
+    .row.item class=(id == -1 ? 'hide' : 'NOT')
+      .col-12#test
+        a.text-purple.edit id='item_' href='#'
+          big +
+          | Add item
+
+    form.item_.form name='list' action='/list/#{list.id}' method='post' class=(id == -1 ? 'show' : 'NOT')
+      .form-row
+        .form-group.col-4
+          input#name.form-control type='text' name='name' placeholder='name' class=(id == -1 ? 'border-purple' : 'NOT')
+            - if id == -1
+              p.error_message
+               small.text-purple = errors[:name][0]
+        .form-group.col-8
+          input.form-control type='text' name='description' placeholder='description'
+      .form-row
+        .form-group.col-2
+          button.btn.btn-purple.btn-block type='submit' Add item
+        .form-group.col-2
+          button.cancel.btn.btn-outline-purple.btn-block type='button' Cancel
+
+javascript:
+  $('.form').hide();
+
+  $('.edit').click(function () {
+    var id = $(this).attr('id');
+    $('.form').hide();
+    $('.item').show();
+    $('form.' + id).show();
+    $(this).parent().parent().hide();
+  })
+
+  $('.cancel').click(function() {
+    $('.form').hide();
+    $('.item').show();
+  })
+
+- if !errors.empty?
+  javascript:
+    $('.show').show();
+    $('.hide').hide();

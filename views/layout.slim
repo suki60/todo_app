@@ -3,23 +3,25 @@ html
     title ToDo
     script src='/js/jquery-3.3.1.min.js'
     script src='/js/bootstrap.min.js'
-    script src='js/popper.min.js'
+    script src='/js/popper.min.js'
     link rel='stylesheet' href='/css/bootstrap.min.css'
     link rel='stylesheet' href='/css/style.css'
 
   body.bg-body
     nav.navbar.navbar-expand.navbar-dark.bg-purple
-      a.navbar-brand href='#' Todolist
+      a.navbar-brand href='/' Todolist
       - if (['login', 'signup'].include? request.path_info.split('/')[1]) && session[:user_id].nil?
         ul.navbar-nav.ml-auto
           li.nav-item
-            a.nav-link href='/signup' signup
+            a.nav-link href='/signup' Signup
           li.nav-item
-            a.nav-link href='/login' login
+            a.nav-link href='/login' Login
       - else
         ul.navbar-nav.ml-auto
           li.nav-item
-            a.nav-link href='/logout' logout
+            a.nav-link href='/logout' Logout
+    .space
     .container
-      .space
-      ==yield
+      == yield
+
+  script src="/js/main.js"
