@@ -6,7 +6,6 @@ require 'digest'
 require 'pry'
 require 'pry-byebug'
 
-
 class Todo < Sinatra::Application
   set :environment, ENV['RACK_ENV'] #:development
 
@@ -19,16 +18,16 @@ class Todo < Sinatra::Application
       puts 'reloaded'
     end
 
-    #DB = Sequel.connect("mysql2://root:1234@localhost/todo")
-    DB = Sequel.connect(YAML.load(File.open('database.yml'))[env])
+    # DB = Sequel.connect("mysql2://root:1234@localhost/todo")
+    DB = Sequel.connect(YAML.safe_load(File.open('database.yml'))[env])
 
-    #require all models
+    # require all models
     Dir['models/*.rb'].each { |model| require_relative model }
 
-    #plugin validation_helpers
+    # plugin validation_helpers
     Sequel::Model.plugin :validation_helpers
 
-    #load all routes
+    # load all routes
     Dir[File.join(File.dirname(__FILE__), 'routes/*/*.rb')].each { |route| load route }
 
     enable :sessions
@@ -36,9 +35,6 @@ class Todo < Sinatra::Application
   end
 end
 
-
 before do
-  if (!['login', 'signup'].include? request.path_info.split('/')[1]) && session[:user_id].nil?
-    redirect '/login'
-  end
+  redirect '/login' if (!%w[login signup].include? request.path_info.split('/')[1]) && session[:user_id].nil?
 end

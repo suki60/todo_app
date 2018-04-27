@@ -7,7 +7,7 @@ end
 
 post '/?' do
   user = User.first(id: session[:user_id])
-  list = List.new_list params[:name], params[:items], user
+  list = List.new_list params[:name], user
   errors = []
   errors << list.errors unless list.valid?
 

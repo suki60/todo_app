@@ -15,36 +15,11 @@ class List < Sequel::Model
   end
 
   # method to create new list
-  def self.new_list(name, items, user)
-    items = [] if items.nil?
+  def self.new_list(name, user)
     list = List.new(name: name)
-
-    items.each { |item| list.items << Item.new(name: item[:name], description: item[:description], user: user) }
 
     list.permissions << Permission.new(user: user, permission_level: 'read_write', created_at: Time.now,
                                        updated_at: Time.now)
-    list
-  end
-
-  # method to edit list
-  def self.edit_list(id, name, items, user)
-    list = List.first(id: id)
-
-    # update name
-    list.name = name
-
-    # update exisiting items or create new ones
-    items.each do |item|
-      i = Item.first(id: item[:id])
-
-      if i.nil?
-        i = Item.new(name: item[:name], description: item[:description], list: list, user: user)
-      else
-        item_list = list.items.find { |it| it.id == i.id }
-        item_list.name = item[:name]
-        item_list.description = item[:description]
-      end
-    end
     list
   end
 end

@@ -1,6 +1,6 @@
 .row
   - lists.each_with_index do |list,i|
-    .col-md-6.col-lg-4.pb-4
+    .col-md-6.col-xl-4.pb-4
       a href="list/#{list.id}"
         .card.text-center.test
           h5.card-header.text-purple
@@ -14,7 +14,7 @@
               - else
                 li.list-group-item.text-white text white
 
-  .col-md-6.col-lg-4.item
+  .col-md-6.col-xl-4
     .card.text-center.test
       button.btn.btn-block.card-height.text-purple data-toggle='modal' data-target='#new_list' type='button' New List
 
