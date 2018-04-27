@@ -11,5 +11,5 @@ post '/list/:id/:item_id/?' do
     id = params[:item_id].to_i
   end
 
-  slim :list, locals: {list: list, errors: item.errors, id: id}
+  slim :list, locals: { list: list, errors: item.errors, id: id }
 end

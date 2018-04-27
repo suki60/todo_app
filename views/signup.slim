@@ -1,5 +1,5 @@
 .row.justify-content-center
-  .col.col-md-4
+  .w-log
     .card
       .card-header Signup to TodoApp
       .card-body
@@ -12,7 +12,10 @@
           .form-group
             label for="password"  Password
             input.form-control type='text' name='password'
-
-          .space
+              .space
+                - if !errors.empty?
+                  - errors[:name].each do |error|
+                    p.error_message
+                      small.text-purple = 'username ' + error
 
           button.btn.btn-outline-purple.btn-block type='submit' Signup

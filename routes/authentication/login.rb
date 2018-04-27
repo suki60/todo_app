@@ -1,8 +1,9 @@
 get '/login/?' do
   if session[:user_id].nil?
-    slim :login
+    errors = ''
+    slim :login, locals: { errors: errors }
   else
-    slim :error, locals: {error: 'Please log out first'}
+    redirect '/logout'
   end
 end
 
@@ -10,7 +11,7 @@ post '/login/?' do
   md5sum = Digest::MD5.hexdigest params[:password]
   user = User.first(name: params[:name], password: md5sum)
   if user.nil?
-    slim :error, locals: {error: 'Invalid login credentials'}
+    slim :login, locals: { errors: 'Incorrect username or password' }
   else
     session[:user_id] = user.id
     redirect '/'

@@ -33,7 +33,7 @@
 }
 
 .space {
-  padding-bottom: 56px;
+  min-height: 56px;
 }
 
 .text-white {
@@ -87,4 +87,8 @@ form {
 
 h3 {
   margin-bottom: 23px;
+}
+
+.w-log {
+  width: 350px;
 }
