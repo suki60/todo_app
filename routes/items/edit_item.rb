@@ -5,7 +5,7 @@ post '/list/:id/:item_id/?' do
 
   if item.valid?
     item_from_db = Item.first(id: params[:item_id])
-    item_from_db.update(name: item.name, description: item.description)
+    item_from_db.update(name: item.name, description: item.description, starred: true)
     id = -2
   else
     id = params[:item_id].to_i

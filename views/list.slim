@@ -24,20 +24,24 @@
 
       form.form class='item_#{i}'  name='list' action='/list/#{list.id}/#{item.id}' method='post' class=(id == item.id ? 'show' : 'NOT')
         .form-row
-          .form-group.col-4
+          .form-group.col-md-4
             input.form-control type='text' name='name' value=(id == item.id ? '' : item.name) class=(id == item.id ? 'border-purple' : 'NOT')
             - if id == item.id
               p.error_message
                small.text-purple = errors[:name][0]
-          .form-group.col-8
+          .form-group.col-md-8
             input.form-control type='text' name='description' value=item.description
         .form-row
-          .form-group.col-2
+          .form-group.col-md-4
+            .form-check
+              label.form-check-label
+                input.form-check-input type='checkbox' name='starred' Starred task
+          .col-md-4
+          .form-group.col-md-2
             button.btn.btn-purple.btn-block type='submit' Edit
-          .form-group.col-2
+          .form-group.col-md-2
             button.cancel.btn.btn-outline-purple.btn-block type='button' Cancel
       hr
-
     .row.item class=(id == -1 ? 'hide' : 'NOT')
       .col-12#test
         a.text-purple.edit id='item_' href='#'
@@ -46,17 +50,17 @@
 
     form.item_.form name='list' action='/list/#{list.id}' method='post' class=(id == -1 ? 'show' : 'NOT')
       .form-row
-        .form-group.col-4
+        .form-group.col-md-4
           input#name.form-control type='text' name='name' placeholder='name' class=(id == -1 ? 'border-purple' : 'NOT')
             - if id == -1
               p.error_message
                small.text-purple = errors[:name][0]
-        .form-group.col-8
+        .form-group.col-md-8
           input.form-control type='text' name='description' placeholder='description'
       .form-row
-        .form-group.col-2
+        .form-group.col-md-2
           button.btn.btn-purple.btn-block type='submit' Add item
-        .form-group.col-2
+        .form-group.col-md-2
           button.cancel.btn.btn-outline-purple.btn-block type='button' Cancel
 
 javascript:
