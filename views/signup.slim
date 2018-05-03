@@ -1,21 +1,22 @@
-.row.justify-content-center
-  .w-log
-    .card
-      .card-header Signup to TodoApp
-      .card-body
-        form. name='login' method='POST' action='/signup/?'
+.container.pt-5
+  .row.justify-content-center
+    .w-log
+      .card
+        .card-header Signup to TodoApp
+        .card-body
+          form. name='login' method='POST' action='/signup/?'
 
-          .form-group
-            label for='username'  Username
-            input.form-control type="text" name='name' placeholder='username'
+            .form-group
+              label for='username'  Username
+              input.form-control type="text" name='name' placeholder='username'
 
-          .form-group
-            label for="password"  Password
-            input.form-control type='text' name='password'
-              .space
-                - if !errors.empty?
-                  - errors[:name].each do |error|
-                    p.error_message
-                      small.text-purple = 'username ' + error
+            .form-group
+              label for="password"  Password
+              input.form-control type='text' name='password'
+                .space
+                  - if !errors.empty?
+                    - errors[:name].each do |error|
+                      p.error_message
+                        small.text-purple = 'username ' + error
 
-          button.btn.btn-outline-purple.btn-block type='submit' Signup
+            button.btn.btn-outline-purple.btn-block type='submit' Signup

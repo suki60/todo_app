@@ -29,3 +29,5 @@ Lint/UnusedBlockArgument:
   AutoCorrect: false
 Lint/UnusedMethodArgument:
   AutoCorrect: false
+Layout/TrailingWhitespace:
+  Enabled: false

@@ -7,7 +7,7 @@ html
     link rel='stylesheet' href='/css/bootstrap.min.css'
     link rel='stylesheet' href='/css/style.css'
 
-  body.bg-body
+  body.vh-100
     nav.navbar.navbar-expand.navbar-dark.bg-purple
       a.navbar-brand href='/' Todolist
       - if (['login', 'signup'].include? request.path_info.split('/')[1]) && session[:user_id].nil?
@@ -20,8 +20,6 @@ html
         ul.navbar-nav.ml-auto
           li.nav-item
             a.nav-link href='/logout' Logout
-    .space
-    .container
-      == yield
+    == yield
 
   script src="/js/main.js"

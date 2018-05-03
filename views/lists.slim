@@ -1,42 +1,42 @@
-.row
-  - lists.each_with_index do |list,i|
-    .col-md-6.col-xl-4.pb-4
-      a href="list/#{list.id}"
-        .card.text-center.test
-          h5.card-header.text-purple
-            = list.name
-          ul.list-group.list-group-flush
-            - 4.times do |i|
-              - if i == 3 && list.items[3]
-                li.li.list-group-item ...
-              - elsif list.items[i]
-                li.list-group-item = list.items[i].name
-              - else
-                li.list-group-item.text-white text white
+.container.pt-5
+  .row
+    - lists.each_with_index do |list,i|
+      .col-md-6.col-xl-4.pb-4
+        a href="list/#{list.id}"
+          .card.test.text-center
+            h5.card-header.text-purple
+              = list.name
+            ul.list-group.list-group-flush
+              - 4.times do |i|
+                - if i == 3 && list.items[3]
+                  li.li.list-group-item ...
+                - elsif list.items[i]
+                  li.list-group-item = list.items[i].name
+                - else
+                  li.list-group-item.text-white text white
 
-  .col-md-6.col-xl-4
-    .card.text-center.test
-      button.btn.btn-block.card-height.text-purple data-toggle='modal' data-target='#new_list' type='button' New List
+    .col-md-6.col-xl-4
+      .card.text-center.test
+        button.btn.btn-block.card-height.text-purple data-toggle='modal' data-target='#new_list' type='button' New List
 
-.modal.fade#new_list tabindex='-1'
-  .modal-dialog
-    .modal-content
-      .modal-header
-        h5.modal-title.text-purple New list
-        button.close type='button'data-dismiss='modal'
-          span &times;
-      form action='/' method='post'
-        .modal-body
-         .row
-          label.col-2.col-form-label for='list_name' Name:
-          .col-10
-            input.form-control#list_name type='text' name='name'
-            - if !errors.empty?
-              p
-               small.text-purple = errors[0][:name][0]
-        .modal-footer
-          button.btn.btn-outline-purple type='button' data-dismiss='modal' Close
-          button.btn.btn-purple type='submit' Create list
+  .modal.fade#new_list tabindex='-1'
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h5.modal-title New list
+          button.close type='button'data-dismiss='modal'
+            span &times;
+        form action='/' method='post'
+          .modal-body
+            .row
+              label.col-2.col-form-label for='list_name' Name:
+              .col-10
+                input.form-control#list_name type='text' name='name'
+                - if !errors.empty?
+                  p
+                  small.text-purple = errors[0][:name][0]
+          .modal-footer
+            button.btn.btn-purple type='submit' Create list
 
 - if !errors.empty?
   javascript:

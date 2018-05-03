@@ -1,35 +1,58 @@
+/* h3 {
+  margin: 0;
+} */
+
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial';
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+/* nav {
+  height: 5%;
+}
+.height {
+  height: 95%
+} */
+
+.vh-100 {
+  height: 100vh;
+}
+
 .bg-body {
-  background-color: #F6F0FA;
+  background-color: #F1F1F1;
 }
 
 .bg-purple {
-  background-color: #60418F;
+  background-color: #3F1169;
 }
 
 .btn-outline-purple {
-  color: #60418F;
-  background-color: #F6F0FA;
+  color: #3F1169;
   background-image: none;
-  border-color: #60418F;
+  border-color: #3F1169;
 }
 
 .btn-outline-purple:hover {
-  color: #60418F;
-  background-color: #EEE2F7;
+  color: #3F1169;
+  background-color: #F6F0FA;
   background-image: none;
-  border-color: #60418F;
+  border-color: #3F1169;
 }
 
 .btn-purple {
   color: white;
-  background-color: #60418F;
-  border-color: #60418F;
+  background-color: #3F1169;
+  border-color: #3F1169;
 }
 
 .btn-purple:hover {
   color: white;
-  background-color: #500880;
-  border-color: #400666;
+  background-color: #300F50;
+  border-color: #300F50;
 }
 
 .space {
@@ -41,7 +64,7 @@
 }
 
 .text-purple {
-  color: #60418F;
+  color: #3F1169;
 }
 
 .card-height {
@@ -54,10 +77,6 @@
   height: 100%;
 }
 
-.test {
-  text-decoration: none;
-}
-
 a, a:hover {
   color: black;
   text-decoration: none;
@@ -68,7 +87,7 @@ form {
 }
 
 .border-purple {
-  border-color: #60418F;
+  border-color: #3F1169;
   background-color: #F6F0FA;
 }
 
@@ -85,10 +104,30 @@ form {
   margin: 0;
 }
 
-h3 {
-  margin-bottom: 23px;
-}
-
 .w-log {
   width: 350px;
+}
+
+.my_icon {
+  font-size: 24px;
+  color: #3F1169;
+}
+
+.my_icon:hover {
+  font-size: 26px;
+  color: #300F50;
+}
+
+.mh-75 {
+  max-height: 75%;
+}
+
+.of-scroll {
+  overflow: scroll;
+}
+
+@media (max-width: 991.98px) {
+  #chat {
+    display: none;
+  }
 }

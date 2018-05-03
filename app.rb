@@ -17,7 +17,7 @@ class Todo < Sinatra::Application
     after_reload do
       puts 'reloaded'
     end
-
+    
     # DB = Sequel.connect("mysql2://root:1234@localhost/todo")
     DB = Sequel.connect(YAML.safe_load(File.open('database.yml'))[env])
 
