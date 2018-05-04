@@ -2,10 +2,22 @@
   .row
     - lists.each_with_index do |list,i|
       .col-md-6.col-xl-4.pb-4
-        a href="list/#{list.id}"
-          .card.test.text-center
-            h5.card-header.text-purple
-              = list.name
+        .card.test.text-center
+          div.card-header.text-purple
+            .container-fluid
+              .row.justify-content-end
+                .col-2
+                  a href='/list/#{list.id}/'
+                .col-8
+                  a href='/list/#{list.id}/'
+                    h5.text-purple
+                      = list.name
+                .col-2
+                  a href='/delete/#{list.id}/'
+                    button.close type='button'data-dismiss='modal'
+                      span
+                        small.mb-3 &times;
+          a href='/list/#{list.id}/'
             ul.list-group.list-group-flush
               - 4.times do |i|
                 - if i == 3 && list.items[3]
@@ -34,7 +46,7 @@
                 input.form-control#list_name type='text' name='name'
                 - if !errors.empty?
                   p
-                  small.text-purple = errors[0][:name][0]
+                    small.text-purple = errors[0][:name][0]
           .modal-footer
             button.btn.btn-purple type='submit' Create list
 

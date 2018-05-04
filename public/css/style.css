@@ -1,7 +1,3 @@
-/* h3 {
-  margin: 0;
-} */
-
 body {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial';
 }
@@ -10,13 +6,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-/* nav {
-  height: 5%;
-}
-.height {
-  height: 95%
-} */
 
 .vh-100 {
   height: 100vh;

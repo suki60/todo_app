@@ -99,9 +99,13 @@
             .container.fluid
               - list.comments.each do |comment|
                 .row.justify-content-end.pb-4
-                  .col-12
+                  .col-11
                     small.text-purple.pr-3.pb-3 = user.name
                     small.text-secondary = comment.created_at
+                  .col-1
+                    div
+                      a href='/delete/#{list.id}/comment/#{comment.id}'
+                        img src='/fonts/iconic/delete.svg' height='15px' width='15px'
                   .col-12
                     p = comment.text
           .modal-footer
@@ -130,11 +134,6 @@ javascript:
   $('.cancel').click(function() {
     $('.form').hide();
     $('.item').show();
-  })
-
-  $('#chat-icon').click(function() {
-    container = document.getElementById('chat-body')
-    container.scrollTop = container.scrollHeight;
   })
 
 - if error_id != 0
